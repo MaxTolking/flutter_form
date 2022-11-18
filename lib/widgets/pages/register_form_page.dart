@@ -24,7 +24,6 @@ class _RegisterFormPageState extends State<RegisterForm> {
   final _emailController = TextEditingController();
   final _commentController = TextEditingController();
 
-  String? _selectedCountry;
   final List<String> _countries = ['Россия', 'Польша', 'Америка', 'Беларусь'];
 
   @override
@@ -51,29 +50,11 @@ class _RegisterFormPageState extends State<RegisterForm> {
           padding: const EdgeInsets.all(20.0),
           children: [
             NameForm(),
-            const SizedBox(
-              height: 15,
-            ),
             SurnameForm(),
-            const SizedBox(
-              height: 15,
-            ),
             PhoneForm(),
-            const SizedBox(
-              height: 15,
-            ),
             EmailForm(),
-            const SizedBox(
-              height: 15,
-            ),
             const SelectCountryForm(),
-            const SizedBox(
-              height: 15,
-            ),
             CommentForm(),
-            const SizedBox(
-              height: 25,
-            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueGrey,

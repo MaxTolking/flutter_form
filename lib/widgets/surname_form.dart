@@ -7,22 +7,24 @@ class SurnameForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: _surnameController,
-      decoration: const InputDecoration(
-          labelText: 'Фамилия *',
-          labelStyle: TextStyle(color: Colors.blueGrey),
-          prefixIcon: Icon(Icons.person),
-          suffixIcon: Icon(Icons.delete_outline, color: Colors.red),
-          hintText: 'Введите Вашу фамилию',
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              borderSide: BorderSide(color: Colors.blue, width: 3.0))),
-      validator: _validateSurname,
-    );
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 25),
+        child: TextFormField(
+          controller: _surnameController,
+          decoration: const InputDecoration(
+              labelText: 'Фамилия *',
+              labelStyle: TextStyle(color: Colors.blueGrey),
+              prefixIcon: Icon(Icons.person),
+              suffixIcon: Icon(Icons.delete_outline, color: Colors.red),
+              hintText: 'Введите Вашу фамилию',
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  borderSide: BorderSide(color: Colors.blue, width: 3.0))),
+          validator: _validateSurname,
+        ));
   }
 
   String? _validateSurname(String? value) {

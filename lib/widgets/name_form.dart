@@ -7,23 +7,26 @@ class NameForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: _nameController,
-      decoration: const InputDecoration(
-          labelText: 'Имя *',
-          labelStyle: TextStyle(color: Colors.blueGrey),
-          hintText: 'Введите Ваше имя',
-          prefixIcon: Icon(
-            Icons.person,
-          ),
-          suffixIcon: Icon(Icons.delete_outline, color: Colors.red),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              borderSide: BorderSide(color: Colors.blue, width: 3.0))),
-      validator: _validateName,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: TextFormField(
+        controller: _nameController,
+        decoration: const InputDecoration(
+            labelText: 'Имя *',
+            labelStyle: TextStyle(color: Colors.blueGrey),
+            hintText: 'Введите Ваше имя',
+            prefixIcon: Icon(
+              Icons.person,
+            ),
+            suffixIcon: Icon(Icons.delete_outline, color: Colors.red),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                borderSide: BorderSide(color: Colors.blue, width: 3.0))),
+        validator: _validateName,
+      ),
     );
   }
 
@@ -35,5 +38,9 @@ class NameForm extends StatelessWidget {
       return 'Имя не может содержать цифры';
     }
     return null;
+  }
+
+  void dispose() {
+    _nameController.dispose();
   }
 }
