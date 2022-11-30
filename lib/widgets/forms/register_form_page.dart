@@ -5,8 +5,6 @@ import 'package:flutter_form/widgets/forms/email_form.dart';
 import 'package:flutter_form/widgets/forms/phone_form.dart';
 import 'package:flutter_form/widgets/forms/surname_form.dart';
 import 'package:flutter_form/widgets/forms/name_form.dart';
-import 'package:flutter_form/widgets/model/user.dart';
-import 'package:flutter_form/widgets/pages/user_info_page.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -20,13 +18,6 @@ class _RegisterFormPageState extends State<RegisterForm> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final _nameController = TextEditingController();
-  final _surnameController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _commentController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _countries = TextEditingController();
-
-  User newUser = User();
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +61,17 @@ class _RegisterFormPageState extends State<RegisterForm> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState?.save();
+      _formKey.currentState!.save();
 
-      _showDialog(name: _nameController.text);
-      print('Форма заполнена правильно!');
-      print('Фамилия: ${_surnameController.text}');
-      print('Телефон: ${_phoneController.text}');
-      print('Email: ${_emailController.text}');
-      print('Страна: $_countries');
-      print('Комментарий: $_commentController');
+      /*_showDialog(name: _nameController.text);
+       if (kDebugMode) {
+        print('Форма заполнена правильно!');
+        print('Фамилия: ${_surnameController.text}');
+        print('Телефон: ${_phoneController.text}');
+        print('Email: ${_emailController.text}');
+        print('Страна: $_countries');
+        print('Комментарий: $_commentController');
+      } */
     } else {
       _showMessage(
           message:
@@ -102,15 +95,15 @@ class _RegisterFormPageState extends State<RegisterForm> {
       ),
     );
   }
+}
 
-  void _showDialog({String? name}) {
-    showDialog(
-      context: context,
-      builder: (context) {
+/* void _showDialog(BuildContext context, {required String name}){
+  showDialog(
+      context: context, 
+      builder: (context,) {
         return AlertDialog(
           icon: const Icon(
             Icons.check_circle,
-            size: 50,
             color: Colors.green,
           ),
           title: const Text('Регистрация прошла успешно!',
@@ -123,26 +116,17 @@ class _RegisterFormPageState extends State<RegisterForm> {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UserInfoPage(
-                      userInfo: newUser,
-                    ),
-                  ),
-                );
               },
               child: const Text(
                 'Отлично!',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.blueGrey,
                   fontSize: 18,
                 ),
               ),
             ),
           ],
         );
-      },
-    );
-  }
+      });
 }
+ */

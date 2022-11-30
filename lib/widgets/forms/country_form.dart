@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../model/user.dart';
+
 class SelectCountryForm extends StatefulWidget {
   const SelectCountryForm({super.key});
 
@@ -13,6 +15,8 @@ class _SelectCountryFormState extends State<SelectCountryForm> {
 
   final List<String> _countries = ['Россия', 'Польша', 'Америка', 'Беларусь'];
 
+  User newUser = User();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +27,7 @@ class _SelectCountryFormState extends State<SelectCountryForm> {
                 borderRadius: BorderRadius.all(Radius.circular(25.0)),
                 borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
             prefixIcon: Icon(Icons.map),
-            labelText: 'Выберите вашу страну?',
+            labelText: 'Выберите вашу страну',
           ),
           items: _countries.map((country) {
             return DropdownMenuItem(
@@ -31,12 +35,13 @@ class _SelectCountryFormState extends State<SelectCountryForm> {
               child: Text(country),
             );
           }).toList(),
-          onChanged: (data) {
+          onChanged: (country) {
             if (kDebugMode) {
-              print(data);
+              print(country);
             }
             setState(() {
-              _selectedCountry = data!;
+              _selectedCountry = country;
+              newUser.country = country!;
             });
           },
           value: _selectedCountry,

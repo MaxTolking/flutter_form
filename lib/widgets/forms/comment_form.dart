@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../model/user.dart';
+
 class CommentForm extends StatelessWidget {
   CommentForm({super.key});
 
   final _commentController = TextEditingController();
+
+  User newUser = User();
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +16,26 @@ class CommentForm extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 40),
         child: TextFormField(
           controller: _commentController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               labelText: 'Комментарий',
-              labelStyle: TextStyle(color: Colors.blueGrey),
-              prefixIcon: Icon(Icons.add_comment),
-              suffixIcon: Icon(Icons.delete_outline, color: Colors.red),
-              enabledBorder: OutlineInputBorder(
+              labelStyle: const TextStyle(color: Colors.blueGrey),
+              prefixIcon: const Icon(Icons.add_comment),
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    _commentController.clear();
+                  },
+                  child: const Icon(Icons.delete_outline, color: Colors.red)),
+              enabledBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   borderSide: BorderSide(color: Colors.blue, width: 3.0))),
           maxLength: 50,
           maxLines: 2,
           inputFormatters: [LengthLimitingTextInputFormatter(100)],
           validator: _validateComment,
+          onSaved: (value) => newUser.name = value!,
         ));
   }
 

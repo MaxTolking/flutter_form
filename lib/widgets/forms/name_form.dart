@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../model/user.dart';
+
 class NameForm extends StatelessWidget {
   NameForm({super.key});
 
   final _nameController = TextEditingController();
+
+  User newUser = User();
 
   @override
   Widget build(BuildContext context) {
@@ -11,21 +15,26 @@ class NameForm extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
         controller: _nameController,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
             labelText: 'Имя *',
-            labelStyle: TextStyle(color: Colors.blueGrey),
+            labelStyle: const TextStyle(color: Colors.blueGrey),
             hintText: 'Введите Ваше имя',
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.person,
             ),
-            suffixIcon: Icon(Icons.delete_outline, color: Colors.red),
-            enabledBorder: OutlineInputBorder(
+            suffixIcon: GestureDetector(
+                onTap: () {
+                  _nameController.clear();
+                },
+                child: const Icon(Icons.delete_outline, color: Colors.red)),
+            enabledBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(25.0)),
                 borderSide: BorderSide(color: Colors.blueGrey, width: 3.0)),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(25.0)),
                 borderSide: BorderSide(color: Colors.blue, width: 3.0))),
         validator: _validateName,
+        onSaved: (value) => newUser.name = value!,
       ),
     );
   }
